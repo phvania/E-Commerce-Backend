@@ -7,9 +7,9 @@ const { Tag, Product, ProductTag } = require('../../models');
   // find all tags
   // be sure to include its associated Product data
 
-router.get('/',  (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const TagData =  Tag.findAll();
+    const TagData = await Tag.findAll();
     res.status(200).json(TagData);
   } catch (err) {
     res.status(500).json(err);
@@ -18,16 +18,16 @@ router.get('/',  (req, res) => {
 
 
 
-router.get('/:id', (req, res) => {
+//router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
-});
+
 //GET a single tag by id
 router.get('/:id', async (req, res) => {
   try {
     const TagData = await Tag.findByPk(req.params.id, {
       // JOIN with tagData, using the productTag through table
-      include: [{ model: Product, through: ProductTag, as: 'tag_product' }] //need to ask
+      //include: [{ model: Product, through: ProductTag, as: 'tag_product' }] //need to ask
     });
 
     if (!TagData) {
