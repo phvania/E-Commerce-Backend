@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
   // update a category by its `id` valuerouter.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const categoryData = await Category.update(req.body); ({
+    const categoryData = await Category.update(req.body, {
       where: { id: req.params.id }
     });
      // need to change here
